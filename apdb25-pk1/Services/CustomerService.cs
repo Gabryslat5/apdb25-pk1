@@ -5,7 +5,12 @@ namespace apdb25_pk1.Services;
 
 public class CustomerService : ICustomerService
 {
-    private readonly string _connectionString = "Data Source=db-mssql;Initial Catalog=2019SBD;Integrated Security=True;Trust Server Certificate=True;";
+    //private readonly string _connectionString = "Data Source=db-mssql;Initial Catalog=2019SBD;Integrated Security=True;Trust Server Certificate=True;";
+    private readonly string _connectionString;
+    public CustomerService(IConfiguration configuration)
+    {
+        _connectionString = configuration.GetConnectionString("Default") ?? string.Empty;
+    }
     
     private ICustomerService _customerServiceImplementation;
     
